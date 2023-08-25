@@ -16,3 +16,4 @@ tripleLargeNumber x = if x > 100
               
 cons = randomIO :: IO Int
 
+a = 10000
