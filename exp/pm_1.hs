@@ -15,7 +15,6 @@ fact 0 = 0
 fact 1 = 1
 fact x = x * fact (x - 1)
 
-
 fact_2 :: Int -> Int
 fact_2 0 = 0
 fact_2 1 = 1
@@ -35,3 +34,21 @@ tell (x:y:_) = "This list is long. The first two elements are: " ++ show x ++ " 
 
 rt_1 :: Int
 rt_1 = 10
+
+maximum' :: (Ord a) => [a] -> a
+maximum' [] = error "maximum of empty list"
+maximum' [x] = x
+maximum' (x:xs) -- The parentheses are needed here to avoid ambiguity
+    | x > maxTail = x
+    | otherwise = maxTail
+    where maxTail = maximum' xs
+
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+   let smallerSorted = quicksort [a | a <- xs, a <= x]
+       biggerSorted = quicksort [a | a <- xs, a > x]
+   in  smallerSorted ++ [x] ++ biggerSorted
+
+-- (/2) raises error while d = (/2) doesn't
+
